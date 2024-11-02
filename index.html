@@ -31,9 +31,11 @@
         }
 
         body {
-            background: #000;
-            position: relative;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
+            position: relative;
+            background: #000;
         }
 
         /* Matrix-style background effect */
@@ -368,7 +370,7 @@
         .page-container {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
             padding: 20px;
             background: #000;
@@ -1157,15 +1159,15 @@
             text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
         }
 
+        /* Update the gallery grid styles */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            justify-content: center;
-            padding: 10px;
-            margin: 0 auto;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns */
+            gap: 15px;
+            padding: 20px;
         }
 
+        /* Update gallery item styles to ensure proper sizing */
         .gallery-item {
             position: relative;
             aspect-ratio: 1;
@@ -1279,12 +1281,366 @@
         .gallery-item:hover img {
             transform: scale(1.1);
         }
+
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-family: 'Impact', sans-serif;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            user-select: none;
+            z-index: 100;
+        }
+
+        /* Update these existing styles */
+        @media (max-width: 1023px) {
+            .app-container {
+                width: 100%;
+                margin: 0;
+                border: none;
+            }
+            
+            .app-content {
+                flex-direction: column;
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .left-panel {
+                flex: none;
+                width: 100%;
+                padding: 15px;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 149, 255, 0.2);
+            }
+
+            .right-panel {
+                padding: 10px;
+            }
+
+            /* Adjust header text sizes */
+            .mega-glitch {
+                font-size: 2.5em;
+                letter-spacing: 3px;
+            }
+
+            .left-panel p {
+                font-size: 0.9em;
+            }
+
+            /* Make toolbar more compact */
+            .toolbar {
+                gap: 2px;
+            }
+
+            .tool-section {
+                padding: 6px;
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+            /* Adjust input sizes */
+            .text-input {
+                width: 100%;
+                max-width: none;
+            }
+
+            .slider-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .slider {
+                width: calc(100% - 70px);
+            }
+        }
+
+        /* Add specific mobile optimizations */
+        @media (max-width: 480px) {
+            .app-content {
+                padding: 5px;
+            }
+
+            .tool-section {
+                padding: 4px;
+            }
+
+            /* Make tools more touch-friendly */
+            button.tool {
+                min-height: 36px;
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            select, input[type="color"] {
+                min-height: 36px;
+            }
+
+            /* Adjust text sizes for better readability */
+            .instructions {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .instruction-step {
+                margin-bottom: 10px;
+            }
+
+            /* Improve gallery layout */
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .gallery-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            /* Make header links more touch-friendly */
+            .header-links {
+                gap: 8px;
+            }
+
+            .header-links a {
+                padding: 12px 16px;
+                font-size: 16px;
+            }
+
+            /* Adjust token info for mobile */
+            .token-info {
+                margin-top: 20px;
+            }
+
+            .token-supply {
+                font-size: 16px;
+            }
+
+            .token-desc {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        }
+
+        /* Add touch-specific optimizations */
+        @media (hover: none) {
+            /* Increase touch targets */
+            .tool, select, input[type="color"], .color-picker {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Improve toolbar spacing */
+            .tool-section {
+                margin-bottom: 8px;
+            }
+
+            /* Make sliders easier to use */
+            input[type="range"] {
+                height: 30px;
+                margin: 8px 0;
+            }
+
+            /* Adjust text inputs */
+            .text-input {
+                padding: 8px;
+                font-size: 16px; /* Prevents iOS zoom on focus */
+            }
+        }
+
+        /* Add iPad-specific optimizations */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .app-container {
+                margin: 10px;
+            }
+
+            .tool-section {
+                flex-wrap: nowrap;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Add/update these styles */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            background: #000;
+        }
+
+        /* Fix canvas container to maintain square aspect ratio */
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; /* Forces square aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background: #333333;
+            border: 1px solid #000;
+        }
+
+        #memeImage, #drawingCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Mobile-specific fixes */
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 10px;
+            }
+
+            .app-container {
+                width: 100%;
+                margin: 0;
+            }
+
+            .canvas-container {
+                touch-action: none; /* Prevents unwanted touch behaviors */
+                -webkit-overflow-scrolling: touch;
+            }
+
+            #drawingCanvas {
+                touch-action: none;
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+            }
+
+            /* Prevent iOS bouncing/scrolling */
+            .app-content {
+                overflow: hidden;
+                position: relative;
+            }
+        }
+        
+        .ios-warning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: #00a8ff;
+            padding: 15px;
+            z-index: 10000;
+            font-family: 'Share Tech Mono', monospace;
+            border-bottom: 1px solid #00a8ff;
+            animation: glideDown 0.5s ease-out;
+        }
+
+        .warning-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .warning-icon {
+            font-size: 20px;
+        }
+
+        .ios-warning button {
+            background: transparent;
+            border: 1px solid #00a8ff;
+            color: #00a8ff;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .ios-warning button:hover {
+            background: rgba(0, 168, 255, 0.1);
+        }
+
+        @keyframes glideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .crop-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .crop-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 20px;
+            border: 2px solid #00a8ff;
+            overflow: hidden;
+        }
+
+        .crop-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .crop-controls button {
+            background: transparent;
+            border: 1px solid #00a8ff;
+            color: #00a8ff;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.3s;
+        }
+
+        .crop-controls button:hover {
+            background: rgba(0, 168, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 168, 255, 0.3);
+        }
+
+        .crop-container canvas {
+            cursor: move;
+        }
     </style>
 </head>
 <body>
     <div class="cyber-orb orb1"></div>
     <div class="cyber-orb orb2"></div>
     <div class="page-container">
+        <!-- Add this iOS warning div right after page-container opens -->
+        <div id="iosWarning" class="ios-warning" style="display: none;">
+            <div class="warning-content">
+                <span class="warning-icon">⚠️</span>
+                <p>This site is optimized for Desktop use. Mobile use may produce unintended results.</p>
+                <button onclick="dismissWarning()">Got it</button>
+            </div>
+        </div>
         <div class="app-container">
             <div class="app-content">
                 <div class="left-panel">
@@ -1303,7 +1659,7 @@
                     <div class="instructions">
                         <div class="instruction-step">Use the BASE MEME or Upload New</div>
                         <div class="instruction-step">Enhance with BASEMEME.exe</div>
-                        <div class="instruction-step">Download and Submit to <a href="https://t.me/basememe">Telegram</a></div>
+                        <div class="instruction-step">Save and Submit to <a href="https://t.me/basememe">Telegram</a></div>
                         <div class="instruction-step">Win $BASEMEME</div>
                     </div>
 
@@ -1350,7 +1706,7 @@
 
                             <div class="tool-section">
                                 <div class="tool-section-label">Tools:</div>
-                                <button class="tool" onclick="downloadMeme()">Download</button>
+                                <button class="tool" onclick="downloadMeme()">Save</button>
                                 <button class="tool">
                                     <label for="imageUpload">Upload</label>
                                     <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)" style="display: none;">
@@ -1361,13 +1717,14 @@
                             </div>
                         </div>
                         <div class="canvas-container">
-                            <img id="memeImage" src="meme1.png" alt="Default meme template">
+                            <img id="memeImage" src="" alt="Default meme template">
                             <canvas id="drawingCanvas"></canvas>
                             <div id="topText" class="meme-text"></div>
                             <div id="bottomText" class="meme-text"></div>
+                            <div class="watermark">basememe.win</div>
                         </div>
                         <div class="meme-caption-container">
-                            <img src="meme0.png" alt="Basememe of the Week" class="meme-caption-icon">
+                            <img src="meme0.jpg" alt="Basememe of the Week" class="meme-caption-icon">
                             <button class="load-winner-btn" onclick="loadWinnerMeme()">LOAD WINNER</button>
                             <p class="meme-caption">
                                 BASEMEME of the Week: Jack Levin, Founder of XEN Crypto and X1 Blockchain, and Anatoly Yakovenko, Co-Founder of Solana, at a blockchain summit discussing innovations in decentralization and scalability. 
@@ -1387,26 +1744,25 @@
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('load', initializeMemeEditor);
+
+        function initializeMemeEditor() {
             const memeImage = document.getElementById('memeImage');
+            const defaultImage = 'meme0.jpg';
             
-            // Set default image and ensure it loads
+            memeImage.src = defaultImage;
             memeImage.onload = function() {
+                console.log('Default image loaded successfully');
                 handleImageLoad(this);
                 resizeCanvas();
                 updateTextPositions();
+                
+                // Enable all controls after image loads
+                document.querySelectorAll('button, input, select').forEach(el => {
+                    el.disabled = false;
+                });
             };
-            
-            // Set default image source
-            if (!memeImage.src || memeImage.src === window.location.href) {
-                memeImage.src = 'meme0.png'; // Set your default image path here
-            }
-            
-            // If image is already loaded (from cache), trigger onload manually
-            if (memeImage.complete) {
-                memeImage.onload();
-            }
-        });
+        }
 
         const canvas = document.getElementById('drawingCanvas');
         const ctx = canvas.getContext('2d');
@@ -1501,16 +1857,114 @@
             updateBrush();
         }
 
+        // Add this function to handle image uploads with cropping
         function handleImageUpload(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    memeImage.src = e.target.result;
-                    memeImage.onload = () => handleImageLoad(memeImage);
+            if (!file) return;
+
+            // Create temporary elements for cropping
+            const modal = document.createElement('div');
+            modal.className = 'crop-modal';
+            
+            const cropContainer = document.createElement('div');
+            cropContainer.className = 'crop-container';
+            
+            const tempImg = new Image();
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = 600;
+            tempCanvas.height = 600;
+            
+            modal.innerHTML = `
+                <div class="crop-controls">
+                    <button id="zoomIn">Zoom In</button>
+                    <button id="zoomOut">Zoom Out</button>
+                    <button id="confirmCrop">Confirm</button>
+                    <button id="cancelCrop">Cancel</button>
+                </div>
+            `;
+            
+            modal.appendChild(cropContainer);
+            cropContainer.appendChild(tempCanvas);
+            document.body.appendChild(modal);
+
+            // Image transformation variables
+            let scale = 1;
+            let offsetX = 0;
+            let offsetY = 0;
+            let isDragging = false;
+            let startX, startY;
+
+            // Load the image
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                tempImg.src = e.target.result;
+                tempImg.onload = () => {
+                    // Initial scale to fit the image
+                    scale = Math.max(600 / tempImg.width, 600 / tempImg.height);
+                    drawCroppedImage();
                 };
-                reader.readAsDataURL(file);
+            };
+            reader.readAsDataURL(file);
+
+            function drawCroppedImage() {
+                const ctx = tempCanvas.getContext('2d');
+                ctx.clearRect(0, 0, 600, 600);
+                
+                // Fill background
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, 600, 600);
+                
+                // Draw image with current transformations
+                ctx.save();
+                ctx.translate(300 + offsetX, 300 + offsetY);
+                ctx.scale(scale, scale);
+                ctx.translate(-tempImg.width/2, -tempImg.height/2);
+                ctx.drawImage(tempImg, 0, 0);
+                ctx.restore();
             }
+
+            // Event listeners for controls
+            document.getElementById('zoomIn').addEventListener('click', () => {
+                scale *= 1.1;
+                drawCroppedImage();
+            });
+
+            document.getElementById('zoomOut').addEventListener('click', () => {
+                scale *= 0.9;
+                drawCroppedImage();
+            });
+
+            // Dragging functionality
+            tempCanvas.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX - offsetX;
+                startY = e.clientY - offsetY;
+            });
+
+            tempCanvas.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                offsetX = e.clientX - startX;
+                offsetY = e.clientY - startY;
+                drawCroppedImage();
+            });
+
+            tempCanvas.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Confirm crop
+            document.getElementById('confirmCrop').addEventListener('click', () => {
+                // Get the final cropped image
+                const finalImage = tempCanvas.toDataURL('image/png');
+                memeImage.src = finalImage;
+                memeImage.onload = () => handleImageLoad(memeImage);
+                document.body.removeChild(modal);
+            });
+
+            // Cancel crop
+            document.getElementById('cancelCrop').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
         }
 
         function handleImageLoad(img) {
@@ -1546,25 +2000,109 @@
         }
 
         function downloadMeme() {
-            // Create a temporary canvas that matches the viewport dimensions exactly
-            const downloadCanvas = document.createElement('canvas');
-            const dCtx = downloadCanvas.getContext('2d');
-            
-            // Get the viewport canvas and its dimensions
-            const viewportCanvas = document.querySelector('.canvas-container');
-            const width = viewportCanvas.offsetWidth;
-            const height = viewportCanvas.offsetHeight;
-            
-            // Set download canvas to match viewport exactly
-            downloadCanvas.width = width;
-            downloadCanvas.height = height;
-            
-            // Capture everything exactly as it appears in the viewport
-            html2canvas(viewportCanvas).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'basememe.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
+            html2canvas(document.querySelector('.canvas-container')).then(canvas => {
+                const ctx = canvas.getContext('2d');
+                
+                // Add watermark to the downloaded image
+                ctx.font = '20px Impact';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+                
+                const watermark = 'basememe.win';
+                const padding = 20;
+                const metrics = ctx.measureText(watermark);
+                const x = canvas.width - metrics.width - padding;
+                const y = canvas.height - padding;
+                
+                ctx.lineWidth = 2;
+                ctx.strokeText(watermark, x, y);
+                ctx.fillText(watermark, x, y);
+                
+                // For iOS, create a temporary link in the page
+                if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+                    const imgData = canvas.toDataURL('image/png');
+                    
+                    // Create a temporary container
+                    const container = document.createElement('div');
+                    container.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.8);
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 10000;
+                        padding: 20px;
+                    `;
+                    
+                    // Create image wrapper that matches the original canvas container
+                    const imgWrapper = document.createElement('div');
+                    const originalContainer = document.querySelector('.canvas-container');
+                    const rect = originalContainer.getBoundingClientRect();
+                    
+                    imgWrapper.style.cssText = `
+                        width: ${rect.width}px;
+                        height: ${rect.height}px;
+                        position: relative;
+                        margin-bottom: 20px;
+                    `;
+                    
+                    // Add the image
+                    const img = document.createElement('img');
+                    img.src = imgData;
+                    img.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    `;
+                    
+                    imgWrapper.appendChild(img);
+                    container.appendChild(imgWrapper);
+                    
+                    // Add instructions
+                    const text = document.createElement('p');
+                    text.textContent = 'Press and hold image to save';
+                    text.style.cssText = 'color: white; font-family: Arial; margin-bottom: 20px;';
+                    
+                    // Add close button
+                    const closeBtn = document.createElement('button');
+                    closeBtn.textContent = 'Close';
+                    closeBtn.style.cssText = `
+                        padding: 10px 20px;
+                        background: #00a8ff;
+                        border: none;
+                        color: white;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    `;
+                    
+                    closeBtn.onclick = () => document.body.removeChild(container);
+                    
+                    container.appendChild(text);
+                    container.appendChild(closeBtn);
+                    document.body.appendChild(container);
+                    
+                    // Also close when clicking outside the image
+                    container.onclick = (e) => {
+                        if (e.target === container) {
+                            document.body.removeChild(container);
+                        }
+                    };
+                } else {
+                    // For other devices, download directly
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.download = 'basememe.png';
+                        link.href = url;
+                        link.click();
+                        URL.revokeObjectURL(url);
+                    }, 'image/png');
+                }
             });
         }
 
@@ -1584,7 +2122,7 @@
 
         memeImage.onerror = function() {
             console.error('Error loading image:', this.src);
-            this.src = 'meme0.png';
+            this.src = 'meme0.jpg';
             // Set a minimum size for the container
             const container = document.querySelector('.canvas-container');
             container.style.minHeight = '450px';
@@ -1767,9 +2305,8 @@
             lastY = y;
         }
 
-        // Update MEME_TEMPLATES array to match desired order
+        // Update the MEME_TEMPLATES array to start from meme1
         const MEME_TEMPLATES = [
-            { id: 0, filename: 'meme0.png', caption: 'Default Image' },
             { id: 1, filename: 'meme1.jpg', caption: 'Meme 1' },
             { id: 2, filename: 'meme2.jpg', caption: 'Meme 2' },
             { id: 3, filename: 'meme3.jpg', caption: 'Meme 3' },
@@ -1779,39 +2316,46 @@
             { id: 7, filename: 'meme7.jpg', caption: 'Meme 7' },
             { id: 8, filename: 'meme8.jpg', caption: 'Meme 8' },
             { id: 9, filename: 'meme9.jpg', caption: 'Meme 9' },
-            { id: 10, filename: 'meme10.jpg', caption: 'Meme 10' }
+            { id: 10, filename: 'meme10.jpg', caption: 'Meme 10' },
+            { id: 11, filename: 'meme11.jpg', caption: 'Meme 11' },
+            { id: 12, filename: 'meme12.jpg', caption: 'Meme 12' },
+            { id: 13, filename: 'meme13.jpg', caption: 'Meme 13' },
+            { id: 14, filename: 'meme14.jpg', caption: 'Meme 14' },
+            { id: 15, filename: 'meme15.jpg', caption: 'Meme 15' },
+            { id: 16, filename: 'meme16.jpg', caption: 'Meme 16' },
+            { id: 17, filename: 'meme17.jpg', caption: 'Meme 17' },
+            { id: 18, filename: 'meme18.jpg', caption: 'Meme 18' },
+            { id: 19, filename: 'meme19.jpg', caption: 'Meme 19' },
+            { id: 20, filename: 'meme20.jpg', caption: 'Meme 20' }
         ];
 
-        // Update gallery initialization function
+        // Update gallery initialization to show all images
         function initializeGallery() {
             const galleryGrid = document.querySelector('.gallery-grid');
-            galleryGrid.innerHTML = ''; // Clear existing items
+            galleryGrid.innerHTML = '';
 
-            // Loop through templates 1 to 10
-            for (let i = 1; i <= 10; i++) {
-                const template = MEME_TEMPLATES[i];
-                if (template) {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
+            MEME_TEMPLATES.forEach(template => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
 
-                    galleryItem.innerHTML = `
-                        <img src="${template.filename}" 
-                             alt="Meme Template ${template.id}">
-                        <div class="template-caption">Template ${template.id}</div>
-                        <div class="template-tags">
-                            <span class="tag">#BASE</span>
-                            <span class="tag">#MEME</span>
-                        </div>
-                    `;
+                galleryItem.innerHTML = `
+                    <img src="${template.filename}" 
+                         alt="Meme Template ${template.id}"
+                         onerror="this.onerror=null; this.src='meme0.jpg'">
+                    <div class="template-caption">Template ${template.id}</div>
+                    <div class="template-tags">
+                        <span class="tag">#BASE</span>
+                        <span class="tag">#MEME</span>
+                    </div>
+                `;
 
-                    galleryItem.addEventListener('click', () => {
-                        memeImage.src = template.filename;
-                        memeImage.onload = () => handleImageLoad(memeImage);
-                    });
+                galleryItem.addEventListener('click', () => {
+                    memeImage.src = template.filename;
+                    memeImage.onload = () => handleImageLoad(memeImage);
+                });
 
-                    galleryGrid.appendChild(galleryItem);
-                }
-            }
+                galleryGrid.appendChild(galleryItem);
+            });
         }
 
         // Call this function on window load or document ready
@@ -1822,7 +2366,7 @@
 
         function loadWinnerMeme() {
             // Load the winning meme into the editor
-            memeImage.src = 'meme0.png';
+            memeImage.src = 'meme0.jpg';
             memeImage.onload = () => handleImageLoad(memeImage);
             
             // Optional: Add a visual feedback for the button click
@@ -1832,6 +2376,31 @@
                 btn.style.backgroundColor = 'rgba(0, 168, 255, 0.1)';
             }, 200);
         }
+
+        // Add iOS detection and warning
+        function showIOSWarning() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const warning = document.getElementById('iosWarning');
+            if (isIOS && warning) {
+                warning.style.display = 'block';
+            }
+        }
+        
+
+        function dismissWarning() {
+            const warning = document.getElementById('iosWarning');
+            if (warning) {
+                warning.style.display = 'none';
+            }
+        }
+
+        // Add to window load event
+        window.addEventListener('load', () => {
+            initializeMemeEditor();
+            initializeGallery();
+            showIOSWarning();
+        });
     </script>
 </body>
 </html>
